@@ -1,10 +1,11 @@
 window.onload = function() {
   var start = document.getElementById('start');
+  var reset = document.getElementById('reset');
   var seconds;
   var game;
-  start.style.top = Math.floor(window.innerHeight * (40/100)) + 'px';
-  start.style.left = Math.floor(window.innerWidth * (45/100)) + 'px';
   start.onclick = set;
+
+  reset.onclick = gameStart;
 
   function resetCount() {
     seconds = 5;
@@ -17,10 +18,10 @@ window.onload = function() {
     document.querySelectorAll('.game').forEach(function(elem) {
       elem.style.display = 'inline-block';
       elem.style.top = Math.floor((Math.random() * (window.innerHeight * (70/100)/1.3))) + 'px';
-      elem.style.left = Math.floor((Math.random() * (window.innerWidth * (85/100)/1.3)))+ 'px';
+      elem.style.left = Math.floor((Math.random() * (window.innerWidth * (70/100)/1.3)))+ 'px';
     });
     start.style.display = 'none';
-
+    reset.style.display = 'inline-block';
   }
   function set() {
     resetCount();
@@ -28,6 +29,7 @@ window.onload = function() {
   }
   function gameCountdown() {
     seconds--
+    start.innerText = seconds;
     console.log(seconds);
     if (seconds == 0) {
       clearInterval(game);
@@ -41,6 +43,8 @@ window.onload = function() {
       elem.setAttribute('disabled', '');
     });
     start.style.display = 'inline-block';
+    reset.style.display = 'none';
+    start.innerText = 'Start';
   }
   var cantBtn;
   var newBtn;

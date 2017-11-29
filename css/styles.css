@@ -6,17 +6,23 @@ body {
   font-family: 'Righteous', cursive;
   margin: 0;
   font-size: 10px;
+  background-color: #1c1c1c;
 }
 
 button {
-  font-family: 'Righteous', cursive;
+  font-family: 'Press Start 2P', cursive;
+  background-color: transparent;
+  color: #1bbf00;
+  border:solid 1px #1bbf00;
+  padding: 0 2.6%;
 }
 
 .game-container {
-  margin: 50px auto;
-  background-color: red;
-  width: 90vw;
-  height: 75vh;
+  margin: 80px 0;
+  background-color: #000;
+  width: 100vw;
+  height: 80vh;
+  clear: both;
 }
 
 .game-container button {
@@ -33,8 +39,19 @@ button {
 }
 
 #start {
+  max-width: 300px;
+  text-align: center;
   position: absolute;
+  top: 40%;
+  left: 37%;
   height: 100px;
-  background-color: transparent;
+  width: 30%;
+  font-size: 3em;
+}
+
+#reset {
+  margin: 24px 0;
+  display: none;
+  float: right;
   font-size: 3em;
 }
