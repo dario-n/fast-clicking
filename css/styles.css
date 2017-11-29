@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Righteous', cursive;
+  margin: 0;
+  font-size: 10px;
+}
+
+button {
+  font-family: 'Righteous', cursive;
+}
+
+.game-container {
+  margin: 50px auto;
+  background-color: red;
+  width: 90vw;
+  height: 75vh;
+}
+
+.game-container button {
+  font-family: 'Righteous', cursive;
+  margin: auto;
+  float: left;
+}
+
+.game {
+  display: none;
+  position: relative;
+  height: 50px;
+  font-size: 2em;
+}
+
+#start {
+  position: absolute;
+  height: 100px;
+  background-color: transparent;
+  font-size: 3em;
+}
