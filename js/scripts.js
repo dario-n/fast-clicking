@@ -1,8 +1,20 @@
 window.onload = function() {
   var start = document.getElementById('start');
   var reset = document.getElementById('reset');
+  var lvlup = document.getElementById('lvlup');
+  var areaDisp = [
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1]
+  ];
   var seconds;
   var game;
+
   start.onclick = set;
 
   reset.onclick = gameStart;
@@ -12,17 +24,29 @@ window.onload = function() {
     i = 1;
     btn = document.getElementById(1);
     btn.removeAttribute('disabled');
+    for (var row = 0; row < areaDisp.length; row++) {
+      for (var col = 0; col < areaDisp[row].length; col++) {
+        areaDisp[row][col] = 1;
+      }
+    }
   }
 
   function gameStart () {
+    var randomRow = Math.floor(Math.random()*7);
+    var randomCol = Math.floor(Math.random()*6);
     document.querySelectorAll('.game').forEach(function(elem) {
       elem.style.display = 'inline-block';
-      elem.style.top = Math.floor((Math.random() * (window.innerHeight * (70/100)/1.3))) + 'px';
-      elem.style.left = Math.floor((Math.random() * (window.innerWidth * (70/100)/1.3)))+ 'px';
+      while (areaDisp[randomRow][randomCol] != 1) {
+        randomRow = Math.floor(Math.random()*7);
+        randomCol = Math.floor(Math.random()*6);
+      }
+      elem.style.gridArea = (randomRow + 1) + "/" + (randomCol + 1);
+      areaDisp[randomRow][randomCol] = 0;
     });
     start.style.display = 'none';
     reset.style.display = 'inline-block';
   }
+
   function set() {
     resetCount();
     game = setInterval(function() {gameCountdown()}, 1000);
@@ -42,10 +66,24 @@ window.onload = function() {
       elem.style.display = 'none';
       elem.setAttribute('disabled', '');
     });
-    start.style.display = 'inline-block';
-    reset.style.display = 'none';
-    start.innerText = 'Start';
+    lvlup.style.display = 'block';
+    var elem = setInterval(function() {
+      if (lvlup.style.fontSize == '3em') {
+        lvlup.style.fontSize = '3.5em';
+      }
+      else {
+        lvlup.style.fontSize = '3em';
+      }
+    }, 200);
+    setTimeout(function(){
+        clearInterval(elem);
+        start.style.display = 'inline-block';
+        reset.style.display = 'none';
+        start.innerText = 'Start';
+        lvlup.style.display = 'none';
+      }, 2500);
   }
+
   var cantBtn;
   var newBtn;
   var i = 1;
@@ -58,9 +96,6 @@ window.onload = function() {
   }
 
   function activarBtn() {
-    if(btn.setAttribute('disabled', '')) {
-      console.log("entro");
-    }
     contarBtn();
     i++;
     btn = document.getElementById(i);
