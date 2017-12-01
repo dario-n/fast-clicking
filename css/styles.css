@@ -98,13 +98,11 @@ button {
     font-size: 2em;
     width: auto;
   }
-  #start {
-    left: 33%;
-  }
-  #lvlup {
+  #start, #lvlup {
     left: 33%;
   }
   #re {
+    top: 55%;
     left: 33%;
   }
 }
@@ -114,13 +112,12 @@ button {
     font-size: 2em;
     width: auto;
   }
-  #start {
-    left: 38%;
-  }
-  #lvlup {
+  #start, #lvlup {
     left: 38%;
   }
   #re {
+    top: 55%;
     left: 38%;
+    font-size: 2.5em;
   }
 }

@@ -188,6 +188,7 @@ window.onload = function() {
 
   function activarBtn() {
     contarBtn();
+    btn.setAttribute('disabled', "");
     i++;
     btn = document.getElementById(i);
     if (i < cantBtn) {
