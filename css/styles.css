@@ -82,6 +82,16 @@ button {
   font-size: 3em;
 }
 
+#re {
+  display: none;
+  max-width: 300px;
+  position: absolute;
+  top: 65%;
+  left: 25%;
+  width: 50%;
+  border-style: none;
+}
+
 @media (min-width:700px) {
   .game {
     height: 50px;
@@ -92,6 +102,9 @@ button {
     left: 33%;
   }
   #lvlup {
+    left: 33%;
+  }
+  #re {
     left: 33%;
   }
 }
@@ -105,6 +118,9 @@ button {
     left: 38%;
   }
   #lvlup {
+    left: 38%;
+  }
+  #re {
     left: 38%;
   }
 }

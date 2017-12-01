@@ -3,6 +3,9 @@ window.onload = function() {
   var reset = document.getElementById('reset');
   var lvlup = document.getElementById('lvlup');
   var label = document.getElementById('countdown');
+  var reint = document.getElementById('re');
+  var btn = document.getElementById(1);
+  var contenido = document.body.innerHTML;
   var areaDisp = [
     [1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1],
@@ -25,8 +28,43 @@ window.onload = function() {
 
   reset.onclick = resetPos;
 
+  btn.onclick = activarBtn;
+
+  function init () {
+    start = document.getElementById('start');
+    reset = document.getElementById('reset');
+    lvlup = document.getElementById('lvlup');
+    label = document.getElementById('countdown');
+    reint = document.getElementById('re');
+    btn = document.getElementById(1);
+    contenido = document.body.innerHTML;
+    areaDisp = [
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1]
+    ];
+    i = 1;
+    cantBtn;
+    newBtn;
+    timer;
+    seconds;
+    game;
+    startCountdown;
+
+    start.onclick = set;
+
+    reset.onclick = resetPos;
+
+    btn.onclick = activarBtn;
+  }
+
   function resetCount() {
-    seconds = 5;
+    seconds = 4;
     i = 1;
     timer = 30;
     btn = document.getElementById(1);
@@ -55,15 +93,30 @@ window.onload = function() {
       areaDisp[randomRow][randomCol] = 0;
     });
   }
+  function resetGame(){
+    document.body.innerHTML = contenido;
+    cantBtn = 0;
+    init();
+    set();
+  }
   function finalCountdown(){
     timer--;
-    if (timer > 10) {
+    if (timer >= 10) {
       label.innerText = "00:" + timer;
     }else {
       label.innerText = "00:0" + timer;
     }
     if (timer == 0) {
       clearInterval(startCountdown);
+      lvlup.style.display = 'inline-block';
+      lvlup.innerText = 'GAME OVER';
+      reset.setAttribute('disabled', '');
+      document.querySelectorAll('.game').forEach(function(elem) {
+        elem.style.display = 'none';
+        elem.setAttribute('disabled', '');
+      });
+      reint.style.display = 'inline-block';
+      reint.onclick = resetGame;
     }
   }
 
@@ -90,7 +143,7 @@ window.onload = function() {
     game = setInterval(function() {gameCountdown()}, 1000);
     setTimeout(function (){
       startCountdown = setInterval(function() {finalCountdown()},1000);
-    },4000);
+    },3000);
   }
 
   function gameCountdown() {
@@ -128,9 +181,6 @@ window.onload = function() {
         lvlup.style.display = 'none';
       }, 2500);
   }
-
-  var btn = document.getElementById(i);
-  btn.onclick = activarBtn;
 
   function contarBtn() {
     cantBtn = document.querySelectorAll('.game').length;
