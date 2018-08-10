@@ -164,6 +164,8 @@ window.onload = function() {
     document.querySelectorAll('.game').forEach(function(elem) {
       elem.style.display = 'none';
       elem.setAttribute('disabled', '');
+	  elem.style.color = '#1bbf00';
+	  elem.style.borderColor = '#1bbf00';
     });
     lvlup.style.display = 'block';
     var elem = setInterval(function() {
@@ -189,6 +191,8 @@ window.onload = function() {
   function activarBtn() {
     contarBtn();
     btn.setAttribute('disabled', "");
+	btn.style.color = 'white';
+	btn.style.borderColor = 'white';
     i++;
     btn = document.getElementById(i);
     if (i < cantBtn) {
