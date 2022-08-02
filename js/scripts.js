@@ -5,6 +5,7 @@ window.onload = function() {
   var label = document.getElementById('countdown');
   var reint = document.getElementById('re');
   var btn = document.getElementById(1);
+  var level = document.getElementById('level');
   var contenido = document.body.innerHTML;
   var areaDisp = [
     [1,1,1,1,1,1,1],
@@ -29,6 +30,7 @@ window.onload = function() {
   reset.onclick = resetPos;
 
   btn.onclick = activarBtn;
+  contarBtn();
 
   function init () {
     start = document.getElementById('start');
@@ -37,6 +39,7 @@ window.onload = function() {
     label = document.getElementById('countdown');
     reint = document.getElementById('re');
     btn = document.getElementById(1);
+    level = document.getElementById('level');
     contenido = document.body.innerHTML;
     areaDisp = [
       [1,1,1,1,1,1,1],
@@ -61,6 +64,7 @@ window.onload = function() {
     reset.onclick = resetPos;
 
     btn.onclick = activarBtn;
+    contarBtn();
   }
 
   function resetCount() {
@@ -135,6 +139,7 @@ window.onload = function() {
     start.style.display = 'none';
     reset.style.display = 'block';
     label.style.display = 'block';
+    level.style.display = 'block';
   }
 
   function set() {
@@ -144,6 +149,7 @@ window.onload = function() {
     setTimeout(function (){
       startCountdown = setInterval(function() {finalCountdown()},1000);
     },3000);
+    level.innerText = "Lvl: " + (cantBtn - 9);
   }
 
   function gameCountdown() {
@@ -160,12 +166,13 @@ window.onload = function() {
     start.removeAttribute('disabled');
     label.style.display = 'none';
     reset.style.display = 'none';
+    level.style.display = 'none';
     clearInterval(startCountdown);
     document.querySelectorAll('.game').forEach(function(elem) {
       elem.style.display = 'none';
       elem.setAttribute('disabled', '');
-	  elem.style.color = '#1bbf00';
-	  elem.style.borderColor = '#1bbf00';
+      elem.style.color = '#1bbf00';
+      elem.style.borderColor = '#1bbf00';
     });
     lvlup.style.display = 'block';
     var elem = setInterval(function() {
@@ -181,7 +188,9 @@ window.onload = function() {
         start.style.display = 'inline-block';
         start.innerText = 'Start';
         lvlup.style.display = 'none';
-      }, 2500);
+    }, 2500);
+    contarBtn();
+    level.innerText = "Lvl: " + (cantBtn - 9);
   }
 
   function contarBtn() {
@@ -191,8 +200,8 @@ window.onload = function() {
   function activarBtn() {
     contarBtn();
     btn.setAttribute('disabled', "");
-	btn.style.color = 'white';
-	btn.style.borderColor = 'white';
+    btn.style.color = 'white';
+    btn.style.borderColor = 'white';
     i++;
     btn = document.getElementById(i);
     if (i < cantBtn) {
@@ -201,7 +210,6 @@ window.onload = function() {
     }
     if (i == cantBtn && btn.hasAttribute('disabled')) {
       btn.removeAttribute('disabled');
-      btn.onclick = nextLvl;
       btn.onclick = crearBtn;
     }
   }
