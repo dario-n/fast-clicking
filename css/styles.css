@@ -68,11 +68,13 @@ button {
 #countdown {
   display: none;
   font-size: 2.5em;
+  margin: 10px;
 }
 
 #level {
   display: none;
   font-size: 2.5em;
+  margin: 10px;
 }
 
 #lvlup {
